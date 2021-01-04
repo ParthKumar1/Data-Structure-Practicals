@@ -195,7 +195,7 @@ int main()
   int c,size,i,x=1;
 printf("\n===========================================================\n");
       printf("                      Doubly Linked List                     ");
-    printf("\nNAME : MAHIJITH K MENON\nROLL NO. : 1901610100105\n\n");
+    printf("\nNAME : Parth\nROLL NO. : 1901610100130\n\n");
   printf("\n=============================================================\n");
   printf("New List :-\n");
   printf("\tEnter initial size of new list :");
