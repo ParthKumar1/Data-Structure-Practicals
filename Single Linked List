@@ -31,7 +31,7 @@ void display()
   if(head == NULL)
     printf("Empty List");
   else{
-    printf("\nHEAD->");
+    printf("/nHEAD->");
     while(q!= NULL)
     {
      printf("%d->",q->data);
