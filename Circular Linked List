@@ -1,0 +1,199 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+  int data;
+  struct node *next;
+}*head = NULL;
+
+void newCLL()
+{
+  struct node *t,*p;
+  t = (struct node*)malloc(sizeof(struct node));
+  scanf("%d",&(t->data));
+  t->next=NULL;
+  if(head == NULL)
+  { t->next = t;
+    head = t; }
+  else{  
+    p = head;
+    while(p->next!= head)
+    { p=p->next; }
+    t->next= p->next;
+    p->next= t;
+  }
+}
+
+void display()
+{
+  struct node *q = head;
+  if(head == NULL)
+    printf("Empty List");
+  else{
+    printf("\nHEAD->");
+    do{
+     printf("%d->",q->data);
+     q=q->next;
+    }while(q!=head);
+    printf("HEAD\n");
+  }
+}
+
+void addbeg()
+{
+  struct node *newNode = (struct node*) malloc (sizeof(struct node));
+  printf("Enter data :");
+  scanf("%d",&newNode->data);
+  if(head == NULL)
+    newNode->next = newNode;
+  else{
+   struct node *q = head;
+   while(q->next!=head)
+     q = q->next;
+   q->next = newNode;
+   newNode->next = head;
+  }
+  head = newNode;
+  printf("Done");
+}
+
+void addend()
+{
+  struct node *newNode;
+  newNode = (struct node*) malloc(sizeof(struct node));
+  printf("Enter data :");
+  scanf("%d",&newNode->data);
+  newNode->next = NULL;
+  struct node *temp = head;
+  if(head == NULL)
+  { newNode->next = newNode;
+    head = newNode; }
+  else{
+   while(temp->next!=head)
+   { temp = temp->next; }
+   temp->next = newNode;
+   newNode->next = head;
+  }
+  printf("Done");
+}
+
+void addpos()
+{
+  int pos;
+  struct node *newNode;
+  struct node *temp = head;
+  newNode = (struct node*) malloc(sizeof(struct node));
+  printf("Enter Position :");
+  scanf("%d",&pos);
+  printf("Enter data :");
+  scanf("%d",&newNode->data);
+  if(pos==1)
+  { newNode->next = head;
+    head = newNode; }
+  else{
+  for(int i=2; i < pos; i++) 
+  { if(temp->next != head) 
+      temp = temp->next;  }
+  newNode->next = temp->next;
+  temp->next = newNode;
+  }
+  printf("Done");
+}
+
+void delbeg()
+{
+  if(head == NULL)
+    printf("Empty List");
+  else if(head->next == head)
+  { head = NULL;
+    printf("Done");  }	
+  else{
+    struct node *q = head;
+    while(q->next!=head)
+    { q=q->next; }
+    head=head->next;
+    q->next = head;
+    printf("Done");
+  } 
+} 
+
+void delend()
+{
+  if(head == NULL)
+   printf("Empty list");
+  else if(head->next==head)
+  { head = NULL;
+    printf("Done"); }
+  else{
+   struct node* temp = head;
+   while(temp->next->next!=head)
+     temp = temp->next;
+   temp->next = head;
+   printf("Done"); 
+  }
+}  
+
+void delpos()
+{
+  if(head == NULL)
+    printf("Empty list");
+  else{
+   int pos;
+   printf("Enter Position :");
+   scanf("%d",&pos);
+   if(pos==1)
+   { head = head->next;
+     printf("Done"); }
+   else if(pos == 1 && head->next == head)
+   { head = NULL;
+     printf("Done"); }
+   else{
+     struct node *temp = head;
+     for(int i=2; i< pos; i++) 
+     { if(temp->next!=head) 
+         temp = temp->next; }
+     temp->next = temp->next->next;
+     printf("Done");  
+    }
+  }
+}
+
+int main()
+{
+  int c,size,i,x=1;
+printf("\n===========================================================\n");
+      printf("                      Circular Linked List           ");
+    printf("\nNAME : Parth\nROLL NO. : 1901610100130\n\n");
+  printf("\n============================================================\n");
+  printf("New List :-\n");
+  printf("\tEnter initial size of new list :");
+  scanf("%d",&size);
+  for(i=0;i<size;i++)
+  { printf("Enter Data %d:",i+1);
+    newCLL(); }
+  printf("\t\tLinked List Created!!");
+  do{
+   printf("\n------------------------------------------------------------\n");
+   printf("1.New Node(First)   \t2.New Node(Last)     \t3.New Node(AtPosition)\n");
+   printf("4.Delete Node(First)\t5.Delete Node(Last)  \t6.Delete Node(AtPosition)\n");
+   printf("7.Display           \t8.exit");
+   printf("\n\t\tEnter Choice :");
+   scanf("%d",&c);
+   printf("\n-----------------------------------------------------------\n");
+   switch(c)
+   {
+     case 1: {addbeg(); break; }
+     case 2: {addend(); break; }
+     case 3: {addpos(); break; }
+     case 4: {delbeg(); break; }
+     case 5: {delend(); break; }
+     case 6: {delpos(); break; }
+     case 7: {display(); break; }
+     case 8: {x=0;break;exit(0);    }
+     default:{printf("\t\tError!!!!!"); break;}
+   }
+  }while(x);
+  printf("\n======================================================\n");
+  return 0;
+}
